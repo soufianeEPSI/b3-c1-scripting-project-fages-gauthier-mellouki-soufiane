@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import csv
 
-with open('conso-annuelles_v1.csv',newline='', encoding='latin1') as f:
+with open('conso-annuelles_v1.csv',newline='', encoding='latin-1') as f:
     tableau=[]
     lire=csv.reader(f, delimiter=";")
     print('',end='\n')
