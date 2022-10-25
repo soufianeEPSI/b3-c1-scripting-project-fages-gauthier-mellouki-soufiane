@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import csv
 
 with open('conso-annuelles_v1.csv',newline='', encoding='latin1') as f:
