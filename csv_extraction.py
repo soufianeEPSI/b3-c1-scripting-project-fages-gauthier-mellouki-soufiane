@@ -1,5 +1,7 @@
 import csv
-with open('conso-annuelles_v1.csv',newline='') as f:
+import chardet
+
+with open('conso-annuelles_v1.csv',newline='', encoding='latin1') as f:
     tableau=[]
     lire=csv.reader(f)
     print('',end='\n')
