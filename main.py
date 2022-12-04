@@ -15,6 +15,8 @@ def suppr_col_IDlogement(tableau):
     for ligne in tableau:
         ligne.pop(1)
 
+#Cette fonction parcourt le tableau en partant de l'index le plus grand du tableau vers 0.
+# car en faisant l'inverse, comme la taille du tableau est reduite de 1 à chaque suppression de ligne, la boucle finirait en dehors des limites du tableau.
 def suppr_ligne_champvide(tableau):
     i=len(tableau)-1
     while i > 0:
