@@ -38,7 +38,7 @@ def add_conso(tableau):
             a = tableau[i][1].replace(',','.') # Je remplace dans la chaine de caractères la virgule par un point
             b = tableau[i][2].replace(',','.')
             total=float(a)+float(b) # Je convertis les chaines de caractères en nombres réels à virgule flottante et les additionne
-            tableau[i].append(total) # J'ajoute une nouvelle colonne au tableau où je stocke la somme obtenue
+            tableau[i].append(total) # J'ajoute une nouvelle colonne au tableau où je stocke la somme obtenue en string
         except:
             tableau.pop(i) # Le bloc except m´a indiqué la ligne non conforme: ['Piscines', '5033,1', '-', 'SPA'], je supprime la ligne du tableau
         i-=1
@@ -47,4 +47,7 @@ tableau=csv_to_array('conso-annuelles_v1.csv')
 suppr_col_IDlogement(tableau)
 suppr_ligne_champvide(tableau)
 add_conso(tableau)
-print(tableau)
+tableau[1:] = sorted(tableau[1:], key=lambda x:x[-1], reverse=True) # Je trie d'abord des consommations totales par ordre décroissant en omettant la première ligne de titres
+tableau[1:] = sorted(tableau[1:], key=lambda x:x[-2]) # Je regroupe ensuite les types avec un tri alphabétique qui préserve l'ordre décroissant des consommations totales
+for line in tableau:
+    print(line)
