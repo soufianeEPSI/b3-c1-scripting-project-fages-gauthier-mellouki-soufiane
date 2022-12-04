@@ -15,7 +15,7 @@ def suppr_col_IDlogement(tableau):
     for ligne in tableau:
         ligne.pop(1)
 
-#Cette fonction parcourt le tableau en partant de l'index le plus grand du tableau vers 0.
+# Cette fonction parcourt le tableau en partant de l'index le plus grand du tableau vers 0.
 # car en faisant l'inverse, comme la taille du tableau est reduite de 1 à chaque suppression de ligne, la boucle finirait en dehors des limites du tableau.
 def suppr_ligne_champvide(tableau):
     i=len(tableau)-1
@@ -32,7 +32,7 @@ def suppr_ligne_champvide(tableau):
 def add_conso(tableau):
     tableau[0].append('Consommation totale')
     i=len(tableau)-1
-    while i > 0:
+    while i > 0: # > 0 évite que la première ligne de titre soit traitée
         # J'utilise un bloc try except pour repérer les erreur et les traiter.
         # Dans les deux colonnes, les valeurs numériques sont écrites sous la forme européennes, avec une virgule, et pas un point.
         try:
@@ -58,6 +58,4 @@ suppr_ligne_champvide(tableau)
 add_conso(tableau)
 tableau[1:] = sorted(tableau[1:], key=lambda x:x[-1], reverse=True) # Je trie d'abord des consommations totales par ordre décroissant en omettant la première ligne de titres
 tableau[1:] = sorted(tableau[1:], key=lambda x:x[-2]) # Je regroupe ensuite les types avec un tri alphabétique qui préserve l'ordre décroissant des consommations totales
-for line in tableau:
-    print(line)
 array_to_csv(tableau)
