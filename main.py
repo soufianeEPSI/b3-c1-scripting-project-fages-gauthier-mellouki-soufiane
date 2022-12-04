@@ -30,6 +30,7 @@ def suppr_ligne_champvide(tableau):
 
 #Cette fonction additionne les consommations des deux années et ajoute le résultat dans une colonne supplémentaire
 def add_conso(tableau):
+    tableau[0].append('Consommation totale')
     i=len(tableau)-1
     while i > 0:
         # J'utilise un bloc try except pour repérer les erreur et les traiter.
@@ -43,6 +44,14 @@ def add_conso(tableau):
             tableau.pop(i) # Le bloc except m´a indiqué la ligne non conforme: ['Piscines', '5033,1', '-', 'SPA'], je supprime la ligne du tableau
         i-=1
 
+# La fonction d'écriture est la même que la fonction de lecture du CSV (sans l'encoding), on ouvre un nouveau fichier en ecriture,
+# on utilise la fonction .writer pour créer l'objet qui va définir les conditions d'écriture dans le fichier,
+# puis on applique la fonction .writerows pour écrire chaque ligne dans le fichier avec les paramètres définis par .writer. 
+def array_to_csv(tableau):
+    with open('conso-clean.csv', 'w') as f:
+        ecrire = csv.writer(f, delimiter=';')
+        ecrire.writerows(tableau)
+
 tableau=csv_to_array('conso-annuelles_v1.csv')
 suppr_col_IDlogement(tableau)
 suppr_ligne_champvide(tableau)
@@ -51,3 +60,4 @@ tableau[1:] = sorted(tableau[1:], key=lambda x:x[-1], reverse=True) # Je trie d'
 tableau[1:] = sorted(tableau[1:], key=lambda x:x[-2]) # Je regroupe ensuite les types avec un tri alphabétique qui préserve l'ordre décroissant des consommations totales
 for line in tableau:
     print(line)
+array_to_csv(tableau)
