@@ -21,7 +21,7 @@ def suppr_ligne_champvide(tableau):
     i=len(tableau)-1
     while i > 0:
         j=3
-        while j > 0:
+        while j >= 0:
             if tableau[i][j] == '':
                 tableau.pop(i)
                 break
